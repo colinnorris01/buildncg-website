@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase | Completed Renovations & Custom Homes Charlotte NC | Norris Construction Group</title>
+    <meta name="description" content="Explore completed kitchen remodels, bathroom renovations, custom home builds, and additions across Charlotte NC on our interactive project map. See our work in your neighborhood.">
+    <link rel="canonical" href="https://buildncg.com/showcase.html">
+    <meta property="og:title" content="Project Showcase | See Our Work | Norris Construction Group">
+    <meta property="og:description" content="Explore completed kitchen remodels, bathroom renovations, custom home builds, and additions across Charlotte NC on our interactive project map. See our work in your neighborhood.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://buildncg.com/showcase.html">
+    <meta name="keywords" content="renovation projects Charlotte NC, kitchen remodel photos Charlotte, bathroom renovation portfolio, custom home builds Charlotte NC, construction showcase Charlotte, remodeling before and after Charlotte NC">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Leaflet CSS (free, open-source mapping) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .showcase-intro {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .showcase-intro p {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        #showcaseMap {
+            height: 70vh;
+            min-height: 500px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: 0 0 40px;
+            border: 1px solid var(--gray-200);
+        }
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15) !important;
+            padding: 0 !important;
+        }
+        .leaflet-popup-content {
+            margin: 0 !important;
+            min-width: 260px;
+        }
+        .popup-inner {
+            padding: 0;
+        }
+        .popup-img {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, var(--dark-3), var(--dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 8px 8px 0 0;
+        }
+        .popup-body {
+            padding: 16px;
+        }
+        .popup-body h4 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            color: var(--dark);
+        }
+        .popup-body .popup-location {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            margin-bottom: 6px;
+        }
+        .popup-body .popup-date {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            margin-bottom: 8px;
+        }
+        .popup-body p {
+            font-size: 0.88rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+        .project-list {
+            padding: 0 0 80px;
+        }
+        .project-list h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+        .project-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .project-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+        .project-card-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--dark-3), var(--dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .project-card-body {
+            padding: 20px;
+        }
+        .project-card-body h3 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .project-card-body .project-loc {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .project-card-body p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Project Showcase - Norris Construction Group",
+      "description": "Interactive map of completed construction and remodeling projects across Charlotte NC and surrounding areas."
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><span class="nav-logo-text">NCG</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="showcase.html" class="active">Showcase</a></li>
+                <li><a href="budget.html">Budget</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="tel:YOURPHONE" class="nav-btn nav-btn-outline">Call Now</a>
+                <a href="contact.html" class="nav-btn nav-btn-primary">Get a Free Quote</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <p class="section-tag light">Our Work</p>
+        <h1>Project Showcase</h1>
+        <p>Explore our completed projects across Charlotte, NC. Click any pin on the map to see project details and photos.</p>
+    </section>
+
+    <div class="container">
+        <div class="showcase-intro">
+            <p>Proudly serving Charlotte, NC and surrounding areas. Each pin represents a completed project — click to explore.</p>
+        </div>
+
+        <!-- Interactive Map -->
+        <div id="showcaseMap"></div>
+
+        <!-- Project List -->
+        <div class="project-list">
+            <h2>Featured Projects</h2>
+            <div class="project-cards" id="projectCards">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+        <div class="cta-bg"><div class="cta-overlay"></div></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2>Want Your Home on This Map?</h2>
+                <p>Let's make your renovation dream a reality. Get in touch for a free quote.</p>
+                <a href="contact.html" class="btn btn-primary btn-lg">Get a Free Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><span class="footer-logo-text">NCG</span></div>
+                    <p class="footer-company">Norris Construction Group</p>
+                    <p class="footer-address">7234 Hopeton Rd, Charlotte,<br>NC 28210-5148</p>
+                    <div class="footer-buttons">
+                        <a href="contact.html" class="btn btn-primary btn-sm">Contact Us</a>
+                        <a href="contact.html" class="btn btn-outline-light btn-sm">Book Now</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="showcase.html">Showcase</a></li>
+                        <li><a href="budget.html">Budget Calculator</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#kitchen">Kitchen Renovation</a></li>
+                        <li><a href="services.html#bathroom">Bathroom Renovation</a></li>
+                        <li><a href="services.html#cabinets">Custom Cabinet Design</a></li>
+                        <li><a href="services.html#custom-homes">Custom Home Construction</a></li>
+                        <li><a href="services.html#additions">Home Additions</a></li>
+                                            </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Service Area</h4>
+                    <p>Charlotte, NC &<br>Surrounding Areas</p>
+                    <h4 class="mt-2">Hours</h4>
+                    <p>Mon – Sun<br>8:00 AM – 10:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Norris Construction Group, LLC. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <!-- Leaflet JS (free, open-source) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // ===== PROJECT DATA =====
+        // Edit this array to add/remove/update your projects.
+        // Each project needs: title, location name, lat, lng, date, description, and image (optional).
+        const projects = [
+            {
+                title: "Transformative Patio Enrichment",
+                location: "Marvin, NC",
+                lat: 34.9921,
+                lng: -80.8134,
+                date: "Mar 2025",
+                description: "Complete patio renovation with custom stonework, outdoor kitchen, and pergola. Elevated the outdoor living experience for this family.",
+                image: null // Replace with image URL when ready, e.g. "images/project1.jpg"
+            },
+            {
+                title: "Modern Kitchen Remodel",
+                location: "Charlotte, NC — South Park",
+                lat: 35.1560,
+                lng: -80.8375,
+                date: "Jan 2025",
+                description: "Full kitchen renovation featuring custom white cabinetry, marble countertops, herringbone backsplash, and modern fixtures.",
+                image: null
+            },
+            {
+                title: "Luxury Bathroom Suite",
+                location: "Charlotte, NC — Ballantyne",
+                lat: 35.0585,
+                lng: -80.8501,
+                date: "Feb 2025",
+                description: "Spa-inspired primary bathroom with freestanding soaking tub, walk-in rainfall shower, wood accent wall, and floating vanity.",
+                image: null
+            },
+            {
+                title: "Custom Home Build",
+                location: "Charlotte, NC — Steele Creek",
+                lat: 35.1140,
+                lng: -80.9520,
+                date: "Nov 2024",
+                description: "Ground-up custom home construction. 3,200 sq ft, 4 bed/3 bath with open floor plan, custom finishes throughout.",
+                image: null
+            },
+            {
+                title: "Home Addition & Remodel",
+                location: "Matthews, NC",
+                lat: 35.1168,
+                lng: -80.7234,
+                date: "Sep 2024",
+                description: "Added a 400 sq ft sunroom and fully remodeled the adjacent kitchen and living area for seamless flow.",
+                image: null
+            },
+            {
+                title: "Cabinet & Flooring Upgrade",
+                location: "Mint Hill, NC",
+                lat: 35.1796,
+                lng: -80.6474,
+                date: "Aug 2024",
+                description: "Custom cabinet installation throughout the kitchen and bathrooms, paired with new luxury vinyl plank flooring.",
+                image: null
+            }
+        ];
+
+        // ===== MAP INITIALIZATION =====
+        const map = L.map('showcaseMap', {
+            scrollWheelZoom: false
+        }).setView([35.12, -80.83], 11);
+
+        // Use a clean, modern tile style (free)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Custom marker icon matching brand color
+        const markerIcon = L.divIcon({
+            className: 'custom-marker',
+            html: `<div style="
+                width: 32px; height: 32px;
+                background: #3cbce5;
+                border: 3px solid #fff;
+                border-radius: 50%;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                display: flex; align-items: center; justify-content: center;
+            "><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg></div>`,
+            iconSize: [32, 32],
+            iconAnchor: [16, 16]
+        });
+
+        // Add markers
+        projects.forEach((project, i) => {
+            const popupContent = `
+                <div class="popup-inner">
+                    <div class="popup-img">${project.image ? `<img src="${project.image}" style="width:100%;height:100%;object-fit:cover;border-radius:8px 8px 0 0;" alt="${project.title}">` : 'Project Photo'}</div>
+                    <div class="popup-body">
+                        <div class="popup-location">${project.location}</div>
+                        <h4>${project.title}</h4>
+                        <div class="popup-date">${project.date}</div>
+                        <p>${project.description}</p>
+                    </div>
+                </div>
+            `;
+            L.marker([project.lat, project.lng], { icon: markerIcon })
+                .addTo(map)
+                .bindPopup(popupContent, { maxWidth: 300, closeButton: true });
+        });
+
+        // ===== PROJECT CARDS =====
+        const cardsContainer = document.getElementById('projectCards');
+        projects.forEach((project, i) => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
+                <div class="project-card-img">${project.image ? `<img src="${project.image}" style="width:100%;height:100%;object-fit:cover;" alt="${project.title}">` : 'Project Photo'}</div>
+                <div class="project-card-body">
+                    <div class="project-loc">${project.location} — ${project.date}</div>
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                </div>
+            `;
+            // Click card to pan map to project
+            card.addEventListener('click', () => {
+                map.flyTo([project.lat, project.lng], 14, { duration: 1 });
+                window.scrollTo({ top: document.getElementById('showcaseMap').offsetTop - 100, behavior: 'smooth' });
+            });
+            cardsContainer.appendChild(card);
+        });
+    </script>
+</body>
+</html>
