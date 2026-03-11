@@ -30,7 +30,7 @@ const SITE_IMAGES = {
     // ========== SERVICES PAGE — DETAIL PHOTOS ==========
     detail_kitchen:    "images/kitchen-island.jpg",
     detail_bathroom:   "images/bathroom-modern.jpg",
-    detail_cabinets:   "images/kitchen-marble.jpg",
+    detail_cabinets:   "images/kitchen-island.jpg",
     detail_newbuild:   "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&q=80",
     detail_additions:  "images/living-room.jpg",
 
