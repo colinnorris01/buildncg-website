@@ -14,7 +14,7 @@ const SITE_IMAGES = {
     hero_bg:      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&h=1080&fit=crop&q=75",
     hero_card_1:  "images/kitchen-island.jpg",
     hero_card_2:  "images/bathroom-luxury.jpg",
-    hero_card_3:  "images/kitchen-marble.jpg",
+    hero_card_3:  "images/kitchen-modern.jpg",
 
     // ========== HOMEPAGE — ABOUT SECTION ==========
     about_large:  "images/living-room.jpg",
@@ -23,7 +23,7 @@ const SITE_IMAGES = {
     // ========== HOMEPAGE — SERVICE GRID (5 cards) ==========
     service_kitchen:   "images/kitchen-island.jpg",
     service_bathroom:  "images/bathroom-luxury.jpg",
-    service_cabinets:  "images/kitchen-marble.jpg",
+    service_cabinets:  "images/kitchen-modern.jpg",
     service_newbuild:  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&q=80",
     service_additions: "images/living-room.jpg",
 
