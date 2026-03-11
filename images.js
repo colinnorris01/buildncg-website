@@ -42,7 +42,7 @@ const SITE_IMAGES = {
     // When you have per-project photos, add them directly
     // in showcase.html's project array.
     project_renovation: "images/living-room.jpg",
-    project_kitchen:    "images/kitchen-island.jpg",
+    project_kitchen:    "images/kitchen-modern.jpg",
     project_bathroom:   "images/bathroom-luxury.jpg",
     project_newbuild:   "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&q=80",
     project_commercial: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop&q=80",
