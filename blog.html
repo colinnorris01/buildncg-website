@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Construction & Renovation News Charlotte NC | Norris Construction Group</title>
+    <meta name="description" content="Read about our latest construction projects, renovations, and new builds across Charlotte NC. Project updates, before and after transformations, and industry insights from Norris Construction Group.">
+    <meta name="keywords" content="Charlotte NC construction blog, renovation projects Charlotte, home remodeling updates, new build construction Charlotte NC, kitchen renovation blog, bathroom remodel Charlotte">
+    <link rel="canonical" href="https://buildncg.com/blog.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .blog-hero { padding: 140px 0 70px; background: var(--dark); text-align: center; }
+        .blog-hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 900; text-transform: uppercase; color: var(--white); margin-bottom: 12px; }
+        .blog-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+        .blog-filter { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; padding: 32px 0; }
+        .blog-filter-btn { padding: 8px 20px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; border: 1.5px solid var(--gray-200); border-radius: 100px; background: var(--white); color: var(--gray-500); cursor: pointer; transition: var(--transition); }
+        .blog-filter-btn.active, .blog-filter-btn:hover { background: var(--accent); color: var(--white); border-color: var(--accent); }
+        .blog-grid { padding: 0 0 80px; }
+        .blog-article { display: grid; grid-template-columns: 360px 1fr; gap: 32px; align-items: start; padding: 32px 0; border-bottom: 1px solid var(--gray-100); }
+        .blog-article:first-child { padding-top: 0; }
+        .blog-article-img { border-radius: var(--radius-lg); overflow: hidden; height: 240px; }
+        .blog-article-img img { width: 100%; height: 100%; object-fit: cover; }
+        .blog-article-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
+        .blog-article-type { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 4px 10px; border-radius: 4px; }
+        .blog-article-location { font-size: 0.78rem; color: var(--gray-400); }
+        .blog-article-body h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; text-transform: uppercase; color: var(--dark); margin-bottom: 8px; line-height: 1.3; }
+        .blog-article-body h2 a { transition: var(--transition); }
+        .blog-article-body h2 a:hover { color: var(--accent); }
+        .blog-article-body p { font-size: 0.92rem; color: var(--gray-500); line-height: 1.7; margin-bottom: 12px; }
+        .blog-read-more { font-size: 0.82rem; font-weight: 600; color: var(--accent); letter-spacing: 0.03em; }
+
+        /* Full article view */
+        .blog-full { display: none; padding: 80px 0; }
+        .blog-full.active { display: block; }
+        .blog-full-header img { width: 100%; height: 400px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 32px; }
+        .blog-full-content { max-width: 720px; margin: 0 auto; }
+        .blog-full-content h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
+        .blog-full-content p { font-size: 1rem; color: var(--gray-500); line-height: 1.85; margin-bottom: 16px; }
+        .blog-back { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; color: var(--accent); margin-bottom: 24px; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .blog-article { grid-template-columns: 1fr; gap: 16px; }
+            .blog-article-img { height: 200px; }
+            .blog-hero { padding: 100px 0 40px; }
+            .blog-full-header img { height: 240px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><span class="nav-logo-text">NCG</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="showcase.html">Showcase</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="budget.html">Budget</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="tel:+17046197800" class="nav-btn nav-btn-outline">Call Now</a>
+                <a href="contact.html" class="nav-btn nav-btn-primary">Free Estimate</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="blog-hero" id="blogHero">
+        <p class="section-tag light">News & Projects</p>
+        <h1>Blog</h1>
+        <p>Project highlights, construction updates, and insights from the field. Follow our latest work across Charlotte and beyond.</p>
+    </section>
+
+    <div class="container" id="blogList">
+        <div class="blog-filter">
+            <button class="blog-filter-btn active" onclick="filterBlog('all')">All</button>
+            <button class="blog-filter-btn" onclick="filterBlog('Full Renovation')">Renovations</button>
+            <button class="blog-filter-btn" onclick="filterBlog('Kitchen')">Kitchens</button>
+            <button class="blog-filter-btn" onclick="filterBlog('Bathroom')">Bathrooms</button>
+            <button class="blog-filter-btn" onclick="filterBlog('New Build')">New Builds</button>
+        </div>
+        <div class="blog-grid" id="blogGrid"></div>
+    </div>
+
+    <!-- Full article view (shown when clicking a post) -->
+    <div class="container blog-full" id="blogFull">
+        <div class="blog-back" onclick="showList()">← Back to all posts</div>
+        <div class="blog-full-header"><img id="fullImg" src="" alt=""></div>
+        <div class="blog-full-content" id="fullContent"></div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><span class="footer-logo-text">NCG</span></div>
+                    <p class="footer-company">Norris Construction Group</p>
+                    <p class="footer-address">Charlotte, NC &amp; Surrounding Areas</p>
+                </div>
+                <div class="footer-col"><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="showcase.html">Showcase</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+                <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html#kitchen">Kitchen Renovation</a></li><li><a href="services.html#bathroom">Bathroom Renovation</a></li><li><a href="services.html#new-build">New Build Construction</a></li><li><a href="services.html#additions">Home Additions</a></li></ul></div>
+                <div class="footer-col"><h4>Service Area</h4><p>Charlotte, NC &<br>Surrounding Areas</p><h4 class="mt-2">Hours</h4><p>Mon – Fri<br>7:00 AM – 5:00 PM</p></div>
+            </div>
+            <div class="footer-bottom"><p id="client-privacy-note" style="font-size:0.65rem;color:var(--gray-500);opacity:0.5;margin-bottom:8px;">Project photography available upon request. Select images are representational to respect client confidentiality.</p><p>&copy; 2026 Norris Construction Group, LLC. All Rights Reserved. Licensed in NC & SC.</p></div>
+        </div>
+    </footer>
+
+    <script src="images.js"></script>
+    <script src="main.js"></script>
+    <script>
+    // Blog posts generated from showcase project data
+    const blogPosts = [
+        {title:"Full Renovation — Modern Natural Design",loc:"Merwick Circle, Charlotte",type:"Full Renovation",img:"images/living-room.jpg",date:"March 11, 2024",shortDate:"Mar 2024",summary:"Complete renovation with changed floor plan and reimagined master suite featuring modern natural design.",full:"This Merwick Circle project set the tone for what Norris Construction Group is all about. The homeowners wanted to completely rethink how their home functioned — opening up the floor plan, creating a show-stopping master suite, and infusing every room with a modern natural aesthetic.
+
+Working through our Houzz Pro client portal, we developed 3D renderings that let the clients walk through their new home before we touched a single wall. The material selection process was collaborative — warm wood tones, organic stone textures, matte black hardware, and abundant natural light became the guiding principles.
+
+The living room's coffered ceiling became the signature feature, painted in a soft blue-gray that gives the space dimension without feeling heavy. The fireplace wall was rebuilt with shiplap and flanking window seats. The master suite now includes a spa-inspired bathroom with freestanding tub, walk-in rainfall shower, and custom double vanity.
+
+From concept to final walkthrough, this project delivered exactly what the clients envisioned — a home that feels both magazine-worthy and deeply personal."},
+        {title:"Whole-Home Renovation",loc:"Rea Croft Dr, Charlotte",type:"Full Renovation",img:"images/kitchen-natural-1.jpg",date:"April 18, 2024",shortDate:"Apr 2024",summary:"Comprehensive renovation with updated finishes and modern design throughout South Charlotte.",full:"Rea Croft Drive sits in one of South Charlotte's most established neighborhoods, and this home needed a refresh that honored the neighborhood's character while bringing the interior into the modern era.
+
+We updated every surface — new hardwood flooring throughout, fresh paint in a contemporary warm palette, modernized kitchen with quartz countertops and soft-close cabinetry, and both bathrooms completely gutted and redesigned. The clients used our Houzz Pro mood boards to compare finish options side-by-side, making decisions with confidence.
+
+The kitchen transformation was the centerpiece — we removed an unnecessary wall between the kitchen and dining room, installed a large island with waterfall edge, and added designer pendant lighting that anchors the space. The result is a home that feels fresh, open, and ready for the next chapter."},
+        {title:"Uptown Condo — Luxury Modern Renovation",loc:"West Trade St, Uptown Charlotte",type:"Full Renovation",img:"images/bath-natural-2.jpg",date:"May 26, 2024",shortDate:"May 2024",summary:"Showstopping renovation of a large uptown condo with floor-to-ceiling views and modern finishes.",full:"When you have panoramic views of the Charlotte skyline, the interior needs to match. This West Trade Street condo had incredible bones but dated finishes that didn't do justice to the location.
+
+We created an open-concept flow by removing a partition wall between the kitchen and living area, making the skyline visible from every angle. Wide-plank engineered hardwood replaced the old carpet. The kitchen features a waterfall-edge island in calacatta quartz with integrated seating. Floor-to-ceiling tile in both bathrooms, custom closet systems, and integrated LED lighting throughout.
+
+Every decision was tracked through our Houzz Pro portal — the client reviewed 3D renderings, approved materials, and monitored the schedule from their phone while traveling for work. Urban luxury doesn't have to mean compromise, and this project proves it."},
+        {title:"Kitchen Renovation",loc:"Poplar Knoll Dr, Matthews NC",type:"Kitchen",img:"images/kitchen-natural-4.jpg",date:"July 04, 2024",shortDate:"Jul 2024",summary:"Complete kitchen transformation in Matthews with custom cabinetry and premium countertops.",full:"This Matthews kitchen was the classic case of a good home with an underwhelming kitchen. Builder-grade cabinets, laminate counters, basic lighting — functional but uninspired.
+
+Our interior design team walked the homeowners through options on Houzz Pro, letting them see real products placed into a 3D rendering of their actual space. The result: custom white shaker cabinets with soft-close hinges, a massive quartz island with waterfall edge and seating for four, designer pendant lighting, and a farmhouse sink with brushed gold hardware.
+
+The backsplash features a herringbone pattern in natural stone that adds texture without competing with the clean lines. New recessed lighting and under-cabinet LEDs transformed the ambiance completely. This kitchen now anchors the entire home's aesthetic."},
+        {title:"Spa-Inspired Bathroom Remodel",loc:"Sunningdale, Charlotte",type:"Bathroom",img:"images/bath-natural-1.jpg",date:"August 11, 2024",shortDate:"Aug 2024",summary:"Luxury bathroom renovation featuring premium tile, custom vanity, and spa-level fixtures.",full:"The master bathroom should be a retreat, and this Sunningdale project delivered exactly that. We started with a complete gut — removing the dated tub surround, cramped shower, and basic vanity to reimagine the space from scratch.
+
+The centerpiece is a freestanding soaking tub positioned to catch natural light. A frameless glass walk-in shower with rainfall head and body sprays sits adjacent, finished in floor-to-ceiling marble-look porcelain. The floating double vanity features warm wood cabinetry with quartz countertop.
+
+Every material was selected through our Houzz Pro mood board process — the client could see exactly how the marble tile, wood tones, brass fixtures, and lighting would work together. Heated floors and a built-in shower niche with LED lighting complete the spa experience."},
+        {title:"Complete Gut & Rebuild",loc:"Five Cedars, Charlotte",type:"Full Renovation",img:"images/kitchen-natural-5.jpg",date:"September 19, 2024",shortDate:"Sep 2024",summary:"Down-to-the-studs renovation with modern natural design from concept renderings to completion.",full:"Some renovations are cosmetic. This was not one of them. The Five Cedars project was a full gut — down to the framing — and a complete rebuild with a modern natural design philosophy guiding every decision.
+
+New floor plan, new electrical, new plumbing, new HVAC, new insulation, new drywall, new everything. But what makes this project special is the design intent — organic materials, clean geometry, and spaces that breathe. Every element was rendered in 3D through Houzz Pro before we ordered a single material.
+
+The kitchen features a natural stone island, custom wood shelving, and matte fixtures. The master suite opens to a private garden view. Throughout, the material palette stays consistent — white oak, calacatta marble, brushed brass, and linen textures. This home doesn't just look renovated — it feels like it was always meant to be this way."},
+        {title:"Whole-Home Renovation",loc:"Ludwig, Charlotte",type:"Full Renovation",img:"images/bath-modern-1.jpg",date:"October 27, 2024",shortDate:"Oct 2024",summary:"Full renovation with modernized layout, custom lighting, and cohesive design throughout.",full:"The Ludwig project was a classic Charlotte renovation — a well-built home in a great neighborhood that just needed to be brought into the current decade. Updated electrical throughout, new lighting design, refinished hardwood floors, fresh paint, and complete kitchen and bathroom renovations.
+
+The kitchen got the biggest transformation — new custom cabinetry, quartz countertops, a designer tile backsplash, and a layout reconfiguration that improved workflow and added an eat-in island. Both bathrooms were updated with new tile, vanities, and fixtures.
+
+Our Houzz Pro portal kept the homeowners informed at every stage — from the initial design concept through construction photos and schedule updates. The result is a home that feels current, cohesive, and move-in ready."},
+        {title:"Full Renovation",loc:"Nutmeg Ln, Charlotte",type:"Full Renovation",img:"images/kitchen-natural-2.jpg",date:"December 04, 2024",shortDate:"Dec 2024",summary:"Complete home renovation with premium materials and refreshed design in every room.",full:"Nutmeg Lane delivered another successful whole-home transformation. The scope covered every room — new flooring, paint, lighting, trim, and complete kitchen and bathroom renovations. The homeowners wanted a clean, modern aesthetic without losing the home's warmth.
+
+We achieved this through material selection — warm-toned engineered hardwood, soft white cabinetry, natural stone countertops, and brass hardware that ties everything together. The bathrooms feature floor-to-ceiling tile, floating vanities, and frameless glass showers.
+
+Every finish was selected through our design process and reviewed in 3D rendering before installation. No surprises, no regrets — just a beautifully executed renovation."},
+        {title:"New Build — 4 Bed / 2.5 Bath",loc:"E Arch St, Lancaster SC",type:"New Build",img:"images/kitchen-natural-3.jpg",date:"January 12, 2025",shortDate:"Jan 2025",summary:"Ground-up new construction with custom design, 3D renderings, and premium quality.",full:"Our Lancaster SC new build showcases the full design-build capability of Norris Construction Group. From an empty lot to a finished 4-bedroom, 2.5-bath home with 2-car garage — every phase managed under one roof.
+
+The project started with architectural plans and 3D renderings through Houzz Pro. The buyer selected every finish virtually — from hardwood species and paint colors to cabinet hardware and lighting fixtures. Construction followed our proven process with detailed scheduling and regular photo updates through the client portal.
+
+The result: a move-in-ready home with wide-plank hardwood, quartz countertops, tile showers, energy-efficient systems, and curb appeal that sells itself. This home sold within 5 days of listing — the fastest sale in Lancaster SC this year."},
+        {title:"Private Hangar Office Build-Out",loc:"Rock Hill Airport, Rock Hill SC",type:"Commercial",img:"images/kitchen-marble.jpg",date:"February 19, 2025",shortDate:"Feb 2025",summary:"Commercial office and suite build-out within private aircraft hangar facilities.",full:"Not every project is residential. Our Rock Hill Airport build-out demonstrates NCG's versatility — constructing a modern office suite and private workspace within an active aircraft hangar facility.
+
+The build required commercial-grade construction meeting aviation facility standards — climate control isolation, proper electrical and data infrastructure, sound dampening, and durable finishes rated for high-traffic commercial use. Custom millwork, professional lighting, and a layout optimized for both office work and client meetings.
+
+This project expanded our footprint into commercial construction while applying the same design-build principles we use in residential work — 3D planning, transparent scheduling, and premium execution."},
+        {title:"Designer Kitchen Renovation",loc:"Old Saybrook, Charlotte",type:"Kitchen",img:"images/kitchen-natural-1.jpg",date:"March 30, 2025",shortDate:"Mar 2025",summary:"Full kitchen remodel turning builder-grade into magazine-worthy with custom cabinetry and stone countertops.",full:"The Old Saybrook kitchen perfectly illustrates what a focused renovation can achieve. The homeowners loved their neighborhood and their home — but the kitchen felt like it belonged to a different house.
+
+We designed a complete transformation: custom cabinetry with glass-front uppers, premium stone countertops with a dramatic vein pattern, a designer tile backsplash in a classic pattern, upgraded stainless steel appliances, and a farmhouse sink with brass hardware. The pendant lighting above the island became the room's signature element.
+
+Using our Houzz Pro design tools, the clients saw their new kitchen in a photorealistic rendering before demo day. Every detail — from drawer pull spacing to grout color — was locked in before we started. The result speaks for itself."},
+        {title:"In-Law Suite — Full Marble Luxury",loc:"Sean Ridge, Charlotte",type:"Full Renovation",img:"images/bath-natural-2.jpg",date:"May 07, 2025",shortDate:"May 2025",summary:"Floor plan reconfiguration for private in-law suite with full marble finishes throughout.",full:"Multi-generational living is one of the fastest-growing trends in residential construction, and this Sean Ridge project delivered a private in-law suite that rivals a luxury hotel.
+
+The floor plan was reconfigured to create a separate living space within the existing home — private entrance, bedroom, sitting area, and a full bathroom finished entirely in marble. The marble wasn't just floors — it covered the shower walls, vanity surround, and threshold transitions, creating a seamless, luxurious envelope.
+
+The design process was critical here — through 3D renderings, we helped the homeowners visualize how the new suite would flow within the existing home without compromising the primary living spaces. The result is a home that serves two generations gracefully."},
+        {title:"Kitchen & Master Bathroom",loc:"Park Rd, Charlotte",type:"Full Renovation",img:"images/kitchen-natural-4.jpg",date:"June 15, 2025",shortDate:"Jun 2025",summary:"Dual-space renovation with coordinated interior design for seamless aesthetic flow.",full:"Park Road is one of Charlotte's most desirable corridors, and this dual-space renovation targeted the two rooms that matter most — the kitchen and master bathroom.
+
+The challenge with renovating two spaces simultaneously is maintaining design cohesion. Our interior design team developed a unified material palette — the same brass hardware in both rooms, complementary stone selections, and a consistent warm-modern aesthetic that makes the home feel intentionally designed rather than piecemeal.
+
+The kitchen got a full overhaul: new island, custom cabinetry, premium countertops, and updated appliances. The master bathroom was gutted and rebuilt with a walk-in shower, freestanding tub, and floating vanity. Both rooms were designed and tracked through Houzz Pro, ensuring the clients always had visibility into progress."},
+        {title:"1,200 SF Custom Pool House",loc:"Ballard Dr, Waxhaw NC",type:"New Build",img:"images/kitchen-natural-5.jpg",date:"July 23, 2025",shortDate:"Jul 2025",summary:"Custom pool house with game room, steam room, and full kitchen — the ultimate backyard build.",full:"This Waxhaw pool house redefines what a backyard structure can be. At 1,200 square feet, it's a full standalone entertainment destination — game room with custom bar, professional-grade steam room, complete outdoor kitchen with commercial appliances, and a covered lounge area.
+
+Design renderings were essential for this project — the clients needed to visualize how the pool house would relate to the main home, the pool, and the surrounding landscape. We used Houzz Pro to develop multiple layout options, refine the material selections, and lock in a design that maximizes both function and aesthetics.
+
+The steam room was engineered to commercial standards — proper waterproofing, ventilation, and tile rated for high-humidity environments. The bar area features custom built-ins, mini fridge, dishwasher, and ambient lighting. This isn't a pool house — it's a lifestyle."},
+        {title:"Full Renovation & Floor Plan Change",loc:"Chandworth Dr, Charlotte",type:"Full Renovation",img:"images/living-room.jpg",date:"August 30, 2025",shortDate:"Aug 2025",summary:"Comprehensive renovation with complete floor plan reconfiguration and modern interior design.",full:"Chandworth Drive presented a common challenge — a home with good square footage but a floor plan that didn't work for modern living. Walls where there shouldn't be walls, wasted hallway space, and a kitchen cut off from the rest of the home.
+
+We developed a new layout through 3D renderings, showing the homeowners exactly how removing strategic walls and reconfiguring the kitchen peninsula would transform the flow. The result: an open-concept living-dining-kitchen space that feels twice as large as the original layout.
+
+Every finish was upgraded — new flooring, paint, lighting, trim, and fixtures throughout. The master bathroom got a complete redesign with a walk-in shower and modern vanity. The home now functions the way the family actually lives."},
+        {title:"Master Bathroom Transformation",loc:"Piper Glen, Charlotte",type:"Bathroom",img:"images/bath-modern-1.jpg",date:"October 08, 2025",shortDate:"Oct 2025",summary:"Luxury master bathroom redesign in Piper Glen with heated floors and spa-level finishes.",full:"Piper Glen is one of Charlotte's premier communities, and this master bathroom needed to match. The existing bathroom was spacious but dated — a garden tub nobody used, a cramped shower, and a single vanity.
+
+Our redesign replaced the garden tub with a sculptural freestanding soaking tub as the room's centerpiece. The shower was expanded into a doorless walk-in with dual heads, bench seating, and floor-to-ceiling marble-look tile. A custom double vanity in warm oak with quartz countertop gives each homeowner their own space.
+
+Heated floors, LED-lit shower niches, and custom mirrors with integrated sconces complete the spa atmosphere. Every selection was made through our Houzz Pro mood board process — no guesswork, no regrets."},
+        {title:"Full Renovation & Open-Concept Conversion",loc:"Highview Dr, Charlotte",type:"Full Renovation",img:"images/kitchen-natural-2.jpg",date:"November 15, 2025",shortDate:"Nov 2025",summary:"Complete renovation converting closed rooms to flowing open-concept living.",full:"The Highview Drive project is a masterclass in how structural changes transform a home. The original layout was a series of disconnected rooms — separate kitchen, formal dining, family room, and living room, all walled off from each other.
+
+After structural engineering review, we removed three non-load-bearing walls and installed a steel beam to open the kitchen to the main living area. The transformation was immediate — the home went from feeling cramped to feeling expansive.
+
+New flooring unified the entire main level, a redesigned kitchen with oversized island became the hub, and fresh paint and lighting design tied everything together. The homeowners gained what felt like an additional 500 square feet without adding a single inch to the footprint."},
+        {title:"Full Renovation & Layout Reimagination",loc:"Sunningdale, Charlotte",type:"Full Renovation",img:"images/bath-natural-1.jpg",date:"December 24, 2025",shortDate:"Dec 2025",summary:"Design-build renovation from concept renderings through completion with reimagined floor plan.",full:"Our second Sunningdale project demonstrates the depth of work we do in Charlotte's established neighborhoods. This was a full design-build renovation — concept renderings, material selection, demolition, construction, and final styling all managed through our Houzz Pro portal.
+
+The floor plan was reimagined to prioritize how the family actually uses the home — the formal living room became a home office, the underutilized den became an expanded master closet, and the kitchen was opened to the backyard with new sliding glass doors.
+
+Every finish was upgraded: new hardwood, custom tile, premium fixtures, and designer lighting throughout. The home looks, feels, and functions like new construction — but it kept the lot, the trees, and the neighborhood the family loves."},
+        {title:"Full Home Renovation",loc:"Villa Lake, Fort Mill SC",type:"Full Renovation",img:"images/kitchen-natural-3.jpg",date:"January 31, 2026",shortDate:"Jan 2026",summary:"Complete renovation in Fort Mill's Villa Lake with modernized layout and cohesive design.",full:"Villa Lake in Fort Mill is one of the most sought-after communities south of Charlotte, and this renovation ensured the home matches the neighborhood's appeal. The scope covered every room — kitchen, both bathrooms, all flooring, paint, lighting, and trim throughout.
+
+The kitchen was the biggest change — we removed a soffit that made the room feel low, extended the cabinetry to the ceiling, installed a stone island with seating, and added modern pendant lighting. Both bathrooms were gutted and rebuilt with current materials and fixtures.
+
+Our Houzz Pro portal kept the homeowners — who were living out of state during construction — fully informed with daily photo updates, schedule tracking, and real-time communication with our project manager. A fresh start without leaving the neighborhood they love."},
+        {title:"SOLD — New Build in Lancaster Closes in 5 Days",loc:"E Arch St, Lancaster SC",type:"New Build",img:"images/bathroom-luxury.jpg",date:"March 11, 2026",shortDate:"Mar 2026",summary:"Our Lancaster SC new build sold within 5 days of listing — the fastest sale in Lancaster this year.",full:"We're proud to announce that our new build at 404 E Arch Street in Lancaster, SC has officially closed — just 5 days after hitting the market. This marks the fastest residential sale in Lancaster SC this year, and it's a testament to what happens when quality construction meets smart design.
+
+This 4-bedroom, 2.5-bath home with 2-car garage was designed and built from the ground up by Norris Construction Group. Every element was planned through our Houzz Pro design portal — from the architectural plans and 3D renderings to the final finish selections. The buyer saw the quality immediately: wide-plank hardwood, quartz countertops, tile showers, energy-efficient HVAC, and curb appeal that photographs beautifully.
+
+The sale validates our approach to new construction — build with the same care and craftsmanship we bring to our custom renovation work, and the market responds. We're actively planning our next new build projects in the Charlotte metro and surrounding markets.
+
+Interested in working with a builder who delivers results? Contact us at info@norrisconstructiongroup.com or call (704) 619-7800."}
+    ];
+
+    let currentFilter = 'all';
+
+    function renderBlog(filter) {
+        const grid = document.getElementById('blogGrid');
+        grid.innerHTML = '';
+        const filtered = filter === 'all' ? blogPosts : blogPosts.filter(p => p.type === filter);
+        
+        filtered.forEach((post, i) => {
+            const realIndex = blogPosts.indexOf(post);
+            const article = document.createElement('div');
+            article.className = 'blog-article';
+            article.setAttribute('data-type', post.type);
+            article.innerHTML = `
+                <div class="blog-article-img"><img src="${post.image}" alt="${post.title} - ${post.loc}" loading="lazy"></div>
+                <div class="blog-article-body">
+                    <div class="blog-article-meta">
+                        <span class="blog-article-type">${post.type}</span>
+                        <span class="blog-article-location">${post.loc}</span>
+                        <span class="blog-article-location">${post.shortDate}</span>
+                    </div>
+                    <h2><a href="#" onclick="showArticle(${realIndex});return false;">${post.title}</a></h2>
+                    <p>${post.summary}</p>
+                    <a href="#" class="blog-read-more" onclick="showArticle(${realIndex});return false;">Read Full Article →</a>
+                </div>
+            `;
+            grid.appendChild(article);
+        });
+    }
+
+    function filterBlog(type) {
+        currentFilter = type;
+        document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        renderBlog(type);
+    }
+
+    function showArticle(i) {
+        const post = blogPosts[i];
+        document.getElementById('blogList').style.display = 'none';
+        document.getElementById('blogHero').style.display = 'none';
+        document.getElementById('blogFull').classList.add('active');
+        document.getElementById('fullImg').src = post.image;
+        document.getElementById('fullContent').innerHTML = `
+            <div class="blog-article-meta" style="margin-bottom:12px;">
+                <span class="blog-article-type">${post.type}</span>
+                <span class="blog-article-location">${post.loc}</span>
+                <span class="blog-article-location">${post.date}</span>
+            </div>
+            <h1>${post.title}</h1>
+            ${post.full.split('\n\n').map(p => `<p>${p}</p>`).join('')}
+            <a href="contact.html" class="btn btn-primary" style="margin-top:24px;">Discuss Your Project</a>
+        `;
+        window.scrollTo(0, 0);
+    }
+
+    function showList() {
+        document.getElementById('blogList').style.display = '';
+        document.getElementById('blogHero').style.display = '';
+        document.getElementById('blogFull').classList.remove('active');
+    }
+
+    // Handle direct link with hash
+    if (window.location.hash.startsWith('#post-')) {
+        const idx = parseInt(window.location.hash.replace('#post-', ''));
+        if (!isNaN(idx) && idx < blogPosts.length) showArticle(idx);
+    }
+
+    renderBlog('all');
+    </script>
+</body>
+</html>
